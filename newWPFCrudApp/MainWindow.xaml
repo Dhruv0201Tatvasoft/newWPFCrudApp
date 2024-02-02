@@ -1,0 +1,156 @@
+﻿<Window x:Class="newWPFCrudApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:newWPFCrudApp"
+        xmlns:vm ="clr-namespace:newWPFCrudApp.ViewModel"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="MainWindow" Height="450" Width="1580"
+        >
+    <Window.DataContext>
+        <vm:PersonViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <vm:PersonViewModel x:Key="MyViewModel"/>
+    </Window.Resources>
+
+    <Grid Margin="79,58,71,36" DataContext="{Binding Source={StaticResource MyViewModel}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="244"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Text="First Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <TextBox  Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Width="150" HorizontalAlignment="Left" Text="{Binding Person.FirstName , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="1" Text="Last Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <TextBox Margin="10,5,10,5" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding Person.LastName, Mode=TwoWay}"/>
+        
+        <TextBlock Grid.Row="2" Text="User Id:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <TextBox Margin="10,5,10,5" Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding Person.UserId, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="3" Text="BirthDate:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <DatePicker SelectedDateFormat="Long" SelectedDate="01-01-1990" DisplayDateStart="01-01-1990" DisplayDateEnd="12-31-2012" Text="{Binding Person.BirthDate, Mode=TwoWay, StringFormat=dd/MM/yyyy}" Margin="10,5,10,5"
+                    FirstDayOfWeek="Monday" Grid.Row="3" Grid.Column="1" Width="150" HorizontalAlignment="Left" />
+
+        
+        <TextBlock Grid.Row="4" Text="Gender:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,13"/>
+        <ComboBox x:Name="txtGender" Grid.Row="4" Grid.Column="1" Margin="10,5,10,5"  Width="150" HorizontalAlignment="Left" Text="{Binding Person.Gender, Mode=TwoWay}">
+            <ComboBoxItem Content="Male"/>
+            <ComboBoxItem Content="Female"/>
+        </ComboBox>
+
+        <TextBlock Grid.Row="5"  Text="Title:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <RadioButton  IsChecked="{Binding Path=TitleRadioBox[0],Mode=TwoWay}" Content="Mr."   Margin="10,5,10,5"/>
+            <RadioButton IsChecked="{Binding Path=TitleRadioBox[1],Mode=TwoWay}" Content="Mrs."  Margin="10,5,10,5"/>
+            <RadioButton IsChecked="{Binding Path=TitleRadioBox[2],Mode=TwoWay}" Content="Miss" Margin="10,5,10,5"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="6" Text="Interest:" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Path=InterestCheckBox[0]}" x:Name="txtReading" Content="Reading" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5,10,5"/>
+            <CheckBox IsChecked="{Binding Path=InterestCheckBox[1]}" x:Name="txtWriting" Content="Writing" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5,10,5"/>
+            <CheckBox IsChecked="{Binding Path=InterestCheckBox[2]}" x:Name="txtSwimming" Content="Swimming" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5,10,5"/>
+        </StackPanel>
+            
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Margin="10,5,0,5">
+            <Button Command="{Binding SubmitCommamd}" x:Name="btnSubmit" Content="Submit" Width="80" Margin="0,0,10,0"/>
+            <Button Command="{Binding  DeleteCommand}" Content="Delete" Width="80" HorizontalAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
+            <DataGrid x:Name="MyDataGrid"  AutoGenerateColumns="False"  HorizontalAlignment="Left"  CanUserAddRows="True"  SelectionMode="Single" ItemsSource="{Binding DataTable2}" SelectedItem="{Binding SelectedItem}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="CellEditEnding">
+                        <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>  
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns >
+
+                    <DataGridTextColumn   Header="userID" Binding="{Binding UserId}"/>
+                    <DataGridComboBoxColumn Header="Title" SelectedValueBinding="{Binding Title}">
+                        <DataGridComboBoxColumn.ElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.Titles, RelativeSource={RelativeSource AncestorType=Window}}" />
+                            </Style>
+                        </DataGridComboBoxColumn.ElementStyle>
+                        <DataGridComboBoxColumn.EditingElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.Titles,RelativeSource={RelativeSource AncestorType=Window}}" />
+                            </Style>
+                        </DataGridComboBoxColumn.EditingElementStyle>
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn  Header="Firstname"  Binding="{Binding Firstname,Mode=TwoWay}"   x:Name="FirstNames" >
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname, Mode=TwoWay}" x:Name="LastNames"/>
+                    <DataGridTemplateColumn Header="Birthdate">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Birthdate,StringFormat=dd/MM/yyyy}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Birthdate,UpdateSourceTrigger=LostFocus }"  DisplayDateStart="01-01-1990" DisplayDateEnd="12-31-2012"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridComboBoxColumn Header="Gender" SelectedValueBinding="{Binding Gender}">
+                        <DataGridComboBoxColumn.ElementStyle >
+                            <Style TargetType="ComboBox" >
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.Genders, RelativeSource={RelativeSource AncestorType=Window}}" />
+                            </Style>
+                        </DataGridComboBoxColumn.ElementStyle>
+                        <DataGridComboBoxColumn.EditingElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding DataContext.Genders, RelativeSource={RelativeSource AncestorType=Window}}" />
+                            </Style>
+                        </DataGridComboBoxColumn.EditingElementStyle>
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn Header="Interests" Binding="{Binding Interests,Mode=TwoWay}"/>
+                    <DataGridTemplateColumn Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.CreatePerson , ElementName=MyDataGrid }" Content="Submit"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.DeletePerson,ElementName=MyDataGrid }" Content="Delete"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid Margin="30 0 0 0 " ItemsSource="{Binding DataTable}"  SelectedItem="{Binding SelectedObject}"   AutoGenerateColumns="False"  CanUserAddRows="False"  SelectionMode="Single"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="Userid" Binding="{Binding UserId}"/>
+                    <DataGridTextColumn Width="100" Header="Title" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Width="100" Header="Firstame" Binding="{Binding Firstname}"/>
+                    <DataGridTextColumn Width="100" Header="Lastname" Binding="{Binding Lastname}"/>
+                    <DataGridTextColumn Width="100" Header="Birthdate" Binding="{Binding Birthdate, StringFormat=dd/MM/yyyy}"/>
+                    <DataGridTextColumn Width="100" Header="Gender" Binding="{Binding Gender}"/>
+                    <DataGridTextColumn Width="100" Header="Interests" Binding="{Binding Interests}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
