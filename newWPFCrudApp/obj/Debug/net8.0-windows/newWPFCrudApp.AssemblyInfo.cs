@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("newWPFCrudApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0b84d14e30e4751ac2accd2a145c314a49c8fca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5282629951ffa64becf8863a2a6dbce74bc55b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("newWPFCrudApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("newWPFCrudApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
