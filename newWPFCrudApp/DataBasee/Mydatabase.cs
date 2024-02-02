@@ -189,7 +189,7 @@ namespace newWPFCrudApp.DataBasee
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error in deleteQuery: " + ex.Message, "Error", MessageBoxButton.OK);
+                MessageBox.Show("There is error to delete item " + ex.Message, "Error", MessageBoxButton.OK);
             }
         }
 }
