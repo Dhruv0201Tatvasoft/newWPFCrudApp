@@ -48,13 +48,11 @@ C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\bin\Debug\net8.0-windows\runt
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.csproj.AssemblyReference.cache
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\MainWindow.g.cs
-C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\UserControl\GridView.g.cs
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp_MarkupCompile.cache
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp_MarkupCompile.lref
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\MainWindow.baml
-C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\UserControl\GridView.baml
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.g.resources
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.AssemblyInfoInputs.cache
@@ -66,3 +64,4 @@ C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\refi
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.pdb
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.genruntimeconfig.cache
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\ref\newWPFCrudApp.dll
+C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.sourcelink.json
