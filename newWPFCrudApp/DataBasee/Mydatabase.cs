@@ -176,6 +176,7 @@ namespace newWPFCrudApp.DataBasee
             }
         }
 
+
         /// <summary>
         /// this method will delete the entry from the table.
         /// </summary>
