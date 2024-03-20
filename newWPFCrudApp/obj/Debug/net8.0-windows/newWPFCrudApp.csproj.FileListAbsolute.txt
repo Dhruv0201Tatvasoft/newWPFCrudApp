@@ -58,10 +58,10 @@ C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newW
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.AssemblyInfoInputs.cache
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.AssemblyInfo.cs
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.csproj.CoreCompileInputs.cache
+C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.sourcelink.json
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.csproj.CopyComplete
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.dll
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\refint\newWPFCrudApp.dll
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.pdb
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.genruntimeconfig.cache
 C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\ref\newWPFCrudApp.dll
-C:\Users\pca89\Desktop\newWPFCrudApp\newWPFCrudApp\obj\Debug\net8.0-windows\newWPFCrudApp.sourcelink.json

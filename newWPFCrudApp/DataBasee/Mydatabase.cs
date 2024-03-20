@@ -153,6 +153,11 @@ namespace newWPFCrudApp.DataBasee
         /// <param name="oUserId">old userId of person</param>
         public void updateQuery(string nFirstname, string nLastname, string nBirthDate, string nGender, string nTitle, string nInterests, string nUserId, string oUserId)
         {
+            if(oUserId == null)
+            {
+                MessageBox.Show("Cant Add User with Duplicate UserId");
+                return;
+            }
             if(nUserId!=oUserId) {
                 MessageBox.Show("Cant Update User id");
                 return;

@@ -36,21 +36,21 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Text="First Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
-        <TextBox  Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Width="150" HorizontalAlignment="Left" Text="{Binding Person.FirstName , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox  Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Width="150" HorizontalAlignment="Left" Text="{Binding FirstName , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Grid.Row="1" Text="Last Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
-        <TextBox Margin="10,5,10,5" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding Person.LastName, Mode=TwoWay}"/>
+        <TextBox Margin="10,5,10,5" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding LastName, Mode=TwoWay}"/>
         
         <TextBlock Grid.Row="2" Text="User Id:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
-        <TextBox Margin="10,5,10,5" Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding Person.UserId, Mode=TwoWay}"/>
+        <TextBox Margin="10,5,10,5" Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Left" Text="{Binding UserId, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="3" Text="BirthDate:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,10"/>
-        <DatePicker SelectedDateFormat="Long" SelectedDate="01-01-1990" DisplayDateStart="01-01-1990" DisplayDateEnd="12-31-2012" Text="{Binding Person.BirthDate, Mode=TwoWay, StringFormat=dd/MM/yyyy}" Margin="10,5,10,5"
+        <DatePicker SelectedDateFormat="Long" SelectedDate="01-01-1990" DisplayDateStart="01-01-1990" DisplayDateEnd="12-31-2012" Text="{Binding BirthDate, Mode=TwoWay, StringFormat=dd/MM/yyyy}" Margin="10,5,10,5"
                     FirstDayOfWeek="Monday" Grid.Row="3" Grid.Column="1" Width="150" HorizontalAlignment="Left" />
 
         
         <TextBlock Grid.Row="4" Text="Gender:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,13"/>
-        <ComboBox x:Name="txtGender" Grid.Row="4" Grid.Column="1" Margin="10,5,10,5"  Width="150" HorizontalAlignment="Left" Text="{Binding Person.Gender, Mode=TwoWay}">
+        <ComboBox x:Name="txtGender" Grid.Row="4" Grid.Column="1" Margin="10,5,10,5"  Width="150" HorizontalAlignment="Left" Text="{Binding Gender, Mode=TwoWay}">
             <ComboBoxItem Content="Male"/>
             <ComboBoxItem Content="Female"/>
         </ComboBox>
@@ -75,15 +75,15 @@
             <Button Command="{Binding  DeleteCommand}" Content="Delete" Width="80" HorizontalAlignment="Left" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
-            <DataGrid x:Name="MyDataGrid"  AutoGenerateColumns="False"  HorizontalAlignment="Left"  CanUserAddRows="True"  SelectionMode="Single" ItemsSource="{Binding DataTable2}" SelectedItem="{Binding SelectedItem}">
+            <DataGrid  x:Name="MyDataGrid"  AutoGenerateColumns="False"  HorizontalAlignment="Left"  CanUserAddRows="True"  SelectionMode="Single" ItemsSource="{Binding DataTable2}" SelectedItem="{Binding SelectedItem}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="CellEditEnding">
                         <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>  
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <DataGrid.Columns >
+				<DataGrid.Columns >
 
-                    <DataGridTextColumn   Header="userID" Binding="{Binding UserId}"/>
+                    <DataGridTextColumn   Header="UserID" Binding="{Binding UserId}"/>
                     <DataGridComboBoxColumn Header="Title" SelectedValueBinding="{Binding Title}">
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="ComboBox">

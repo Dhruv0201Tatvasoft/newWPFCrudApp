@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\newWPFCrudApp",
-    "\\newWPFCrudApp\\UserControl",
     "\\newWPFCrudApp\\ViewModel"
   ],
-  "SelectedNode": "\\newWPFCrudApp\\UserControl\\GridView.xaml",
+  "SelectedNode": "\\newWPFCrudApp\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

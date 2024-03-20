@@ -23,6 +23,53 @@ namespace newWPFCrudApp.ViewModel
         private Person selectedPerson;
         private DataTable dataTable;
         private Mydatabase db;
+        private string userId;
+
+        public string UserId
+        {
+            get { return userId; }
+            set
+            {
+                userId = value;
+                OnPropertyChanged("UserId");
+            }
+        }
+        private string firstName;
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; OnPropertyChanged("FirstName"); }
+        }
+        private string lastName;
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; OnPropertyChanged("LastName"); }
+        }
+        private DateTime? birthDate;
+
+        public DateTime? BirthDate
+        {
+            get { return birthDate; }
+            set { birthDate = value; OnPropertyChanged("BirthDate"); }
+        }
+        private string gender;
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; OnPropertyChanged("Gender"); }
+        }
+        private string interest;
+
+        public string Interest
+        {
+            get { return interest; }
+            set { interest = value; OnPropertyChanged("Interest"); }
+        }
+
 
 
         private DataRowView selectedObject;
@@ -90,7 +137,6 @@ namespace newWPFCrudApp.ViewModel
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
 
@@ -260,11 +306,11 @@ namespace newWPFCrudApp.ViewModel
         {
             try
             {
-                Person.FirstName = string.Empty;
-                Person.LastName = string.Empty;
-                Person.Gender = string.Empty;
-                Person.BirthDate = DateTime.Now;
-                Person.UserId = string.Empty;
+                FirstName = string.Empty;
+                LastName = string.Empty;
+                Gender = string.Empty;
+                BirthDate = DateTime.Now;
+                UserId = string.Empty;
                 UncheckAllTitles();
                 UncheckAllInterest();
             }
@@ -281,15 +327,14 @@ namespace newWPFCrudApp.ViewModel
         {
             try
             {
-                Person.FirstName = SelectedPerson.FirstName;
-                Person.LastName = SelectedPerson.LastName;
-                Person.Gender = SelectedPerson.Gender;
-                Person.BirthDate = SelectedPerson.BirthDate;
-                Person.Interest = SelectedPerson.Interest;
-                Person.UserId = SelectedPerson.UserId;
+                FirstName = SelectedPerson.FirstName;
+                LastName = SelectedPerson.LastName;
+                Gender = SelectedPerson.Gender;
+                BirthDate = SelectedPerson.BirthDate;
+                UserId = SelectedPerson.UserId;
                 SetInterest();
                 SetTitle();
-                OnPropertyChanged("Person");
+                OnPropertyChanged("Firstname");
             }
             catch (Exception ex)
             {
@@ -341,11 +386,11 @@ namespace newWPFCrudApp.ViewModel
             {
                 if (SelectedPerson == null)
                 {
-                    db.insertQuery(Person.FirstName, Person.LastName, Person.BirthDate.ToString("yyyy-MM-dd"), Person.Gender, SelectTitile(), String.Join(",", getSelectedInterests()), Person.UserId);
+                    db.insertQuery(FirstName, LastName,BirthDate.Value.ToString("yyyy-MM-dd"), Gender, SelectTitile(), String.Join(",", getSelectedInterests()), UserId);
                 }
                 else
                 {
-                    db.updateQuery(Person.FirstName, Person.LastName, Person.BirthDate.ToString("yyyy-MM-dd"), Person.Gender, SelectTitile(), String.Join(",", getSelectedInterests()), Person.UserId, selectedPerson.UserId);
+                    db.updateQuery(FirstName, LastName,BirthDate.Value.ToString("yyyy-MM-dd"),Gender, SelectTitile(), String.Join(",", getSelectedInterests()), UserId, selectedPerson.UserId);
                     selectedPerson = null;
                 }
 
@@ -372,7 +417,7 @@ namespace newWPFCrudApp.ViewModel
         /// </summary>
         private bool CanSubmitExecute(object arg)
         {
-            if (String.IsNullOrEmpty(Person.FirstName) || String.IsNullOrEmpty(Person.LastName) || String.IsNullOrEmpty(Person.UserId))
+            if (String.IsNullOrEmpty(FirstName) || String.IsNullOrEmpty(LastName) || String.IsNullOrEmpty(UserId))
             {
                 return false;
             }
@@ -453,7 +498,7 @@ namespace newWPFCrudApp.ViewModel
         public DataTable DataTable2
         {
             get { return datatable2; }
-            set { datatable2 = value;}
+            set { datatable2 = value; }
         }
         public DataRowView SelectedItem
         {
@@ -465,16 +510,24 @@ namespace newWPFCrudApp.ViewModel
             {
                 if (value == null) return;
                 selecteditem = value;
-                selectedPersongridtwo = new Person()
+                if (selecteditem.Row[4]!=DBNull.Value)
                 {
-                    UserId = selecteditem.Row[0].ToString(),
-                    FirstName = selecteditem.Row[1].ToString(),
-                    LastName = selecteditem.Row[2].ToString(),
-                    Gender = selecteditem.Row[3].ToString(),
-                    BirthDate = (DateTime)selecteditem.Row[4],
-                    Title = selecteditem.Row[5].ToString(),
-                    Interest = selecteditem.Row[6].ToString()
-                };
+                    selectedPersongridtwo = new Person()
+                    {
+                        UserId = selecteditem.Row[0].ToString(),
+                        FirstName = selecteditem.Row[1].ToString(),
+                        LastName = selecteditem.Row[2].ToString(),
+                        Gender = selecteditem.Row[3].ToString(),
+                        BirthDate = (DateTime)selecteditem.Row[4],
+                        Title = selecteditem.Row[5].ToString(),
+                        Interest = selecteditem.Row[6].ToString()
+                    };
+                }
+                else
+                {
+                    selectedPersongridtwo = new Person() { };
+                }
+                
             }
         }
         private string newlname;
@@ -527,13 +580,16 @@ namespace newWPFCrudApp.ViewModel
             }
             else
             {
-                if (newfname == null) newfname = selectedPersongridtwo.FirstName;
-                if (newlname == null) newlname = selectedPersongridtwo.LastName;
-                if (newdate == new DateTime()) newdate = selectedPersongridtwo.BirthDate;
-                if (newgender == null) newgender = selectedPersongridtwo.Gender;
-                if (newtitle == null) newtitle = selectedPersongridtwo.Title;
-                if (newinterests == null) newinterests = selectedPersongridtwo.Interest;
-                newuserid = selectedPersongridtwo.UserId;
+                if (selectedPersongridtwo != null)
+                {
+                    if (newfname == null) newfname = selectedPersongridtwo.FirstName;
+                    if (newlname == null) newlname = selectedPersongridtwo.LastName;
+                    if (newdate == new DateTime()) newdate = selectedPersongridtwo.BirthDate;
+                    if (newgender == null) newgender = selectedPersongridtwo.Gender;
+                    if (newtitle == null) newtitle = selectedPersongridtwo.Title;
+                    if (newinterests == null) newinterests = selectedPersongridtwo.Interest;
+                    if (newuserid == null) newuserid = selectedPersongridtwo.UserId;
+                }
                 db.updateQuery(newfname, newlname, newdate.ToString("yyyy-MM-dd"), newgender, newtitle, newinterests, newuserid, selectedPersongridtwo.UserId);
             }
             newgender = null;
@@ -543,7 +599,6 @@ namespace newWPFCrudApp.ViewModel
             newinterests = null;
             newtitle = null;
             newuserid = null;
-            selectedPersongridtwo = null;
             DataTable = null;
             DataTable = db.GetData();
             DataTable2 = null;
@@ -569,13 +624,13 @@ namespace newWPFCrudApp.ViewModel
         {
             return true;
         }
-        
+
         private void celledingexecute(object obj)
         {
             var e = (DataGridCellEditEndingEventArgs)obj;
             switch (e.Column.Header)
             {
-                case "userID":
+                case "UserID":
                     newuserid = ((TextBox)e.EditingElement).Text;
                     break;
                 case "Firstname":
@@ -616,7 +671,7 @@ namespace newWPFCrudApp.ViewModel
 
         private void deleteExecutegridtwo(object obj)
         {
-            if (selectedPersongridtwo!= null)
+            if (selectedPersongridtwo != null)
             {
                 db.deleteQuery(selectedPersongridtwo.UserId);
 
@@ -639,4 +694,3 @@ namespace newWPFCrudApp.ViewModel
 }
 
 
- 
